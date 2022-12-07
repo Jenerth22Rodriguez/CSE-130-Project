@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 
+
+
 typedef struct{
     int vin;
     int year;
@@ -26,18 +28,41 @@ if(answer == 'y' || answer == 'Y')
 FILE *g;
 g = fopen("CarInventory.csv", "r");
 char line[10000];
-
-while(fgets(line,sizeof(line), g))
+char word2[10000][20];
+int index = 0;
+while (fgets(line, sizeof(line), g))
 {
+    if(index >= 10000){
+        break;
+    }
 char *wordTaken;
 wordTaken = strtok(line, ",");
 
-while(wordTaken != NULL)
+int counter = 0;
+
+while (wordTaken != NULL)
 {
+    strcpy(word2[index], wordTaken);
     printf("%-14s", wordTaken);
     wordTaken = strtok(NULL, ",");
+    counter++;
 }
 printf("\n");
+index++;
+}
+char input[20];
+printf("Would like to input a car branch: ");
+scanf("%s", input);
+for (int i = 0; i < 10000; i++){
+    if(strstr(word2[i],input) != NULL)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+             printf("%-14s", word2[i]);
+        }
+       
+        printf("\n"); 
+    }
 }
 }
 else 
