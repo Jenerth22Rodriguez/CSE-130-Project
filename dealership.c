@@ -10,6 +10,31 @@ typedef struct{
     char *branch[30];
 }Car_t;
 
+void monthlyPayment(int *a, int *b){
+
+int downPayment;
+int maxPayment;
+
+printf("Please enter the amount you plan to use as a down payment: \n");
+scanf("%d", &downPayment);
+printf("Please enter your maximum monthly payment: \n");
+scanf("%d", &maxPayment);
+
+*a = *a - downPayment;
+while(1){
+if(*a / *b > maxPayment){
+    *b = *b + 1;
+}
+else{
+*a = *a / *b;
+break;
+}
+}
+}
+
+
+
+
 
 int main(void)
 {
@@ -21,31 +46,36 @@ printf("Would you like to see our car catalog Enter Y for yes or N for no: ");
 scanf("%c",&answer);
 printf("**********************************************************************\n");
 int i = 0;
-if(answer == 'y' || answer == 'Y'){
-   FILE *g;
+if(answer == 'y' || answer == 'Y')
+{
+FILE *g;
 g = fopen("CarInventory.csv", "r");
-char *var;
-char varchar[301];
-var = &varchar[0];
-char *ptr;
-char ptr2[20];
-ptr = &ptr2[0];
-while (1){
-    fgets(var, 300,g);
-    if(feof(g)){
-        break;
-    }
-    printf("%s",var);
+char line[10000];
+
+while(fgets(line,sizeof(line), g))
+{
+char *wordTaken;
+wordTaken = strtok(line, ",");
+
+while(wordTaken != NULL)
+{
+    printf("%-14s", wordTaken);
+    wordTaken = strtok(NULL, ",");
 }
-while (*(var +i) != ','){
-     *(ptr + i) = *(var + i);
-    i = i + 1;
+printf("\n");
 }
-printf("%s\n",ptr);
 }
-else {
+else 
+{
     printf("Thank you for your time\n");
 }
 
+int carPrice = 30000;
+int months = 1;
+
+monthlyPayment(&carPrice,&months);
+printf("Your car payment will be %d per month for %d months.",carPrice,months);
+
 return 0;
-}
+} 
+
