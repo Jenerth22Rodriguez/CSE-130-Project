@@ -15,15 +15,15 @@ void monthlyPayment(int *a, int *b){
 int downPayment;
 int maxPayment;
 
-printf("Please enter the amount you plan to use as a down payment: \n");
+printf("Please enter the amount you plan to use as a down payment: ");
 scanf("%d", &downPayment);
-printf("Please enter your maximum monthly payment: \n");
+printf("Please enter your maximum monthly payment: ");
 scanf("%d", &maxPayment);
 
 *a = *a - downPayment;
 while(1){
 if(*a / *b > maxPayment){
-    *b = *b + 1;
+    *b = *b + 1;      
 }
 else{
 *a = *a / *b;
@@ -31,10 +31,6 @@ break;
 }
 }
 }
-
-
-
-
 
 int main(void)
 {
@@ -64,18 +60,26 @@ while(wordTaken != NULL)
 }
 printf("\n");
 }
+int carPrice;
+char CarName[20];
+char Model[20];
+
+printf("Enter the car you like the most: ");
+scanf("%s",CarName);
+printf("Enter the model you like the most: ");
+scanf("%s", Model);
+printf("Enter the price of the car: ");
+scanf("%d",&carPrice);
+int months = 1;
+
+monthlyPayment(&carPrice,&months);
+printf("Your car payment will be %d per month for %d months.\n",carPrice,months);
+printf("\nCONGRATULATIONS on your new %s %s!\n",CarName, Model);
 }
 else 
 {
     printf("Thank you for your time\n");
 }
-
-int carPrice = 30000;
-int months = 1;
-
-monthlyPayment(&carPrice,&months);
-printf("Your car payment will be %d per month for %d months.",carPrice,months);
-
 return 0;
 } 
 
