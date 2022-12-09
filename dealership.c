@@ -3,15 +3,12 @@
 #include <string.h>
 #include <math.h>
 
-
-
 typedef struct{
     int vin;
     int year;
     char *model[30];
     char *branch[30];
 }Car_t;
-
 
 int main(void)
 {
@@ -28,7 +25,7 @@ if(answer == 'y' || answer == 'Y')
 FILE *g;
 g = fopen("CarInventory.csv", "r");
 char line[10000];
-char word2[10000][20];
+char word2[10000][8];
 int index = 0;
 while (fgets(line, sizeof(line), g))
 {
@@ -51,7 +48,7 @@ printf("\n");
 index++;
 }
 char input[20];
-printf("Would like to input a car branch: ");
+printf("Would you like to input a car branch: ");
 scanf("%s", input);
 for (int i = 0; i < 10000; i++){
     if(strstr(word2[i],input) != NULL)
