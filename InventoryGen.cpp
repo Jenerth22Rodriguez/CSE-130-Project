@@ -122,7 +122,7 @@ bool generateCSV(long int cars)
         // get random VIN
         const long long int VIN = randVin();
         // compiles randomized values to a CSV string, then writes that to a new line in the csv file
-        fprintf(csvFilePointer, "%d,%0.10lld,%s,%s,%s,%s,%s,%s\n", i, VIN, car[0].c_str(), car[1].c_str(), exteriorColor.c_str(), interiorColor.c_str(), transType.c_str(), car[2].c_str());
+        fprintf(csvFilePointer, "%ld,%0.10lld,%s,%s,%s,%s,%s,%s\n", i, VIN, car[0].c_str(), car[1].c_str(), exteriorColor.c_str(), interiorColor.c_str(), transType.c_str(), car[2].c_str());
     }
     // close file from editing
     fclose(csvFilePointer);
